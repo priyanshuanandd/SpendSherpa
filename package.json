@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "concurrently \"yarn backend\" \"yarn frontend\"",
+    "start": "concurrently \"yarn backend\" \"yarn frontend\"",
     "backend": "cd backend && yarn dev",
     "frontend": "cd frontend && yarn dev"
   },
