@@ -3,8 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ThemeProvider from './Components/ThemeProvider';
 import Login from './Screens/Login';
 import Signup from './Screens/Signup';
+import ProtectedAuthRoute from './Components/Authentication/ProtectedAuthRoute'
 import Home from './Screens/Home';
 import Navbar from './Components/navbar';
+
 function App() {
   const [user, setUser] = useState(null);
 
@@ -12,20 +14,21 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      // Simulating fetching user data (replace with real API call)
-      const loggedInUser = { name: 'John Doe' }; // Replace with decoded JWT token
+        console.log(localStorage)
+      const loggedInUser = { name: localStorage.name }; 
       setUser(loggedInUser);
-    }
+    }f
   }, []);
 
   return (
     <ThemeProvider>
+
       <Router>
         <Navbar user={user} setUser={setUser} />
         <Routes>
           <Route path="/" element={<Home user={user} />} />
-          <Route path="/login" element={<Login setUser={setUser} />} />
-          <Route path="/signup" element={<Signup setUser={setUser}/>} />
+          <Route path="/login" element={<ProtectedAuthRoute> <Login setUser={setUser} /></ProtectedAuthRoute>} />
+          <Route path="/signup" element={<ProtectedAuthRoute> <Signup setUser={setUser} /></ProtectedAuthRoute>} />
         </Routes>
       </Router>
     </ThemeProvider>
