@@ -1,25 +1,28 @@
 import React from 'react';
 import { useTheme } from './ThemeProvider';
 import { useNavigate } from 'react-router-dom';
-
+import icon from './icon.png'
 const Navbar = ({ user, setUser }) => {
   const { darkMode, toggleTheme } = useTheme(); // Theme context
   const navigate = useNavigate();
 
   // Logout function
   const handleLogout = () => {
-    localStorage.removeItem('token'); // Clear stored token
+    localStorage.removeItem('token');
+    localStorage.clear; // Clear stored token
     setUser(null); // Reset user state
     navigate('/login'); // Redirect to login page
   };
 
   return (
     <nav className="p-4 bg-gray-800 dark:bg-gray-900 text-white flex justify-between items-center shadow-md">
-      {/* Logo or Brand Name */}
-      <h1 className="text-2xl font-bold cursor-pointer" onClick={() => navigate('/')}>
-        SpendSherpa
-      </h1>
-
+  <h1 className="cursor-pointer" onClick={() => navigate('/')}>
+    <img
+      src={icon}
+      className="h-12 w-auto object-contain"
+      alt="SpendSherpa Logo"
+    />
+  </h1>
       {/* Right Section: Theme Toggle & User Menu */}
       <div className="flex items-center gap-4">
         {/* Theme Toggle */}

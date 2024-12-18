@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import { API_URL } from '../Components/apiConfig';
 const Signup = ({setUser}) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -14,7 +14,7 @@ const Signup = ({setUser}) => {
     console.log({ name, email, password }); // Log the data you're sending
 
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/signup', {
+      const response = await axios.post(`${API_URL}/auth/signup`, {
         name,
         email,
         password
@@ -23,9 +23,11 @@ const Signup = ({setUser}) => {
       console.log(response.data); // Log the response to see if it's successful
       // Save the token and redirect
       localStorage.setItem('token', response.data.token);
-      localStorage.setItem('name', response.data.name);
-      setUser({ name: response.data.name });
+      localStorage.setItem('name', name);
+      setUser({ name: name });
       console.log('Signup successful');
+      localStorage.setItem("name", name);
+      console.log(localStorage);
       navigate('/login'); // Redirect to dashboard or another page after successful signup
     } catch (error) {
       console.error('Error signing up:', error.response ? error.response.data : error);

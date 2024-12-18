@@ -6,6 +6,7 @@ import Signup from './Screens/Signup';
 import ProtectedAuthRoute from './Components/Authentication/ProtectedAuthRoute'
 import Home from './Screens/Home';
 import Navbar from './Components/navbar';
+import ProtectedRoute from './Components/Authentication/ProtectedRoute';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -14,10 +15,10 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-        console.log(localStorage)
+       // console.log(localStorage)
       const loggedInUser = { name: localStorage.name }; 
       setUser(loggedInUser);
-    }f
+    }
   }, []);
 
   return (
@@ -26,7 +27,7 @@ function App() {
       <Router>
         <Navbar user={user} setUser={setUser} />
         <Routes>
-          <Route path="/" element={<Home user={user} />} />
+          <Route path="/" element={<ProtectedRoute><Home user={user} /></ProtectedRoute>} />
           <Route path="/login" element={<ProtectedAuthRoute> <Login setUser={setUser} /></ProtectedAuthRoute>} />
           <Route path="/signup" element={<ProtectedAuthRoute> <Signup setUser={setUser} /></ProtectedAuthRoute>} />
         </Routes>
