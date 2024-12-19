@@ -1,0 +1,21 @@
+{
+    "manifest_version": 3,
+    "name": "SpendSherpa Helper",
+    "version": "1.0",
+    "description": "Fetch website heading and add expenses to SpendSherpa.",
+    "permissions": [
+        "activeTab",
+        "scripting",
+        "storage"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": "icon.png"
+    },
+    "host_permissions": [
+        "http://localhost:5000/*"
+    ]
+}

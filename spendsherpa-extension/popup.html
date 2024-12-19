@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpendSherpa Extension</title>
+    <style>
+        body {
+            width: 400px;
+            height: 400px;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        #login-container {
+            display: block;
+            padding: 20px;
+        }
+
+        #main-container {
+            display: none;
+            padding: 20px;
+        }
+
+        input,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        #user-name {
+            font-size: 18px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="login-container">
+        <h3>Login to SpendSherpa</h3>
+        <input type="email" id="email" placeholder="Email" />
+        <input type="password" id="password" placeholder="Password" />
+        <button id="login-button">Login</button>
+        <p id="error-message" style="color: red; display: none;">Invalid credentials</p>
+    </div>
+    <div id="main-container">
+        <h3>Welcome to SpendSherpa</h3>
+        <p id="user-name"></p> <!-- This will display the user's name -->
+        <button id="add-expense">Add Expense</button>
+        <button id="logout-button">Logout</button> <!-- Logout button -->
+        <p id="message" style="color: green;"></p>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>

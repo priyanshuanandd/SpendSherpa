@@ -9,6 +9,7 @@ const Home = ({ user }) => {
   const [expenses, setExpenses] = useState([]); // State to store expenses
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [Checker, setChecker] = useState(false)
 
   // Fetch expenses from the API
   useEffect(() => {
@@ -26,8 +27,9 @@ const Home = ({ user }) => {
         setLoading(false);
       }
     };
+    setChecker(false);
     fetchExpenses();
-  }, [expenses]);
+  }, [Checker]);
 
   // Handle adding a new expense
   const onAddExpense = async (newExpense) => {
@@ -42,7 +44,8 @@ const Home = ({ user }) => {
         }
       );
       // Update state with the new expense
-      setExpenses((prevExpenses) => [...prevExpenses, response.data.data]); // response.data.data will contain the newly added expense
+      setExpenses((prevExpenses) => [...prevExpenses, response.data.data]); 
+      setChecker(true);// response.data.data will contain the newly added expense
     } catch (err) {
       setError("Failed to add expense.");
     }
